@@ -42,7 +42,7 @@ class App extends Component {
     this.props.history.push("/login");
   };
 
-  signup = (username, password, passwordConfirmation) => {
+  signup = (name, username, password, passwordConfirmation) => {
     if (password === passwordConfirmation) {
       fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
@@ -51,6 +51,7 @@ class App extends Component {
           Accept: "application/json"
         },
         body: JSON.stringify({
+          name: name,
           username: username,
           password: password
         })

@@ -23,6 +23,7 @@ const styles = {
 };
 
 function Navigation(props) {
+  console.log(props.currentUser)
   const { classes } = props;
   return (
     <div className={classes.root}>
@@ -52,7 +53,7 @@ function Navigation(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            {`Welcome, ${props.currentUser.username}!`}
+            {`Welcome, ${props.currentUser.name}!`}
           </Typography>
           <Button onClick={props.logout} color="inherit">
             <Link to="/" className="item">

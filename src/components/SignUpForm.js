@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { withStyles } from '@material-ui/core/styles';
 import Grid from "@material-ui/core/Grid";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Lock from "@material-ui/icons/Lock";
 import Create from "@material-ui/icons/Create";
@@ -53,7 +51,7 @@ class SignUpForm extends Component {
   }
 
   submitForm = () => {
-    this.props.signup(this.state.username, this.state.password, this.state.passwordConfirmation)
+    this.props.signup(this.state.name, this.state.username, this.state.password, this.state.passwordConfirmation)
   }
   render() {
     const { classes } = this.props;
@@ -127,6 +125,7 @@ class SignUpForm extends Component {
               }
             />
           </FormControl>
+
           <Button type="submit" variant="contained" color="primary" className={classes.button}>
             Sign Up
           </Button>
