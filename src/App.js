@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import Navigation from "./components/Navigation";
+import InteractAppBar from "./components/InteractAppBar";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -99,10 +99,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navigation currentUser={this.state.currentUser} logout={this.logout}/>
+        <InteractAppBar
+          currentUser={this.state.currentUser}
+          logout={this.logout}
+        />
 
         <Switch>
-          <Route path="/login" render={(routerProps) => <LoginForm login={this.login} {...routerProps}/>}/>
+          <Route
+            path="/login"
+            render={routerProps => (
+              <LoginForm login={this.login} {...routerProps} />
+            )}
+          />
 
           <Route
             path="/signup"
@@ -110,11 +118,8 @@ class App extends Component {
               <SignUpForm signup={this.signup} {...routerProps} />
             )}
           />
-          {/* <Route path="/users/:id" component={YourBotArmy}/> */}
-
-
+          {/* <Route path="/users/:id" component={InteractDashboard} /> */}
         </Switch>
-
       </div>
     );
   }
