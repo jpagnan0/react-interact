@@ -23,45 +23,28 @@ const styles = {
 };
 
 function Navigation(props) {
-  console.log(props.currentUser)
   const { classes } = props;
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        { !props.currentUser ?
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              Interact
-            </Typography>
-            <Button color="inherit">
-              <Link to="/signup" className="item">
-                Sign Up
-              </Link>
-            </Button>
-            <Button color="inherit">
-              <Link to="/login" className="item">
-                Log In
-              </Link>
-            </Button>
-          </Toolbar>
-        :
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            {`Welcome, ${props.currentUser.name}!`}
+            Interact
           </Typography>
-          <Button onClick={props.logout} color="inherit">
-            <Link to="/" className="item">
-              Log Out
+          <Button color="inherit">
+            <Link to="/signup" className="item">
+              Sign Up
+            </Link>
+          </Button>
+          <Button color="inherit">
+            <Link to="/login" className="item">
+              Log In
             </Link>
           </Button>
         </Toolbar>
-        }
       </AppBar>
     </div>
   );

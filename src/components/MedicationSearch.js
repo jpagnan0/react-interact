@@ -1,33 +1,26 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Input from "@material-ui/core/Input";
+import FormControl from "@material-ui/core/FormControl";
+import Button from "@material-ui/core/Button";
 
-const API_SEARCH = `http://localhost:3000/api/v1/search?medication_name=`;
+
 
 class MedicationSearch extends Component {
-
-  static propTypes = {
-
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      medication_name: ''
-    };
-  }
-
-  componentDidMount() {
-    fetch(`${API_SEARCH}${this.state.medication_name}`)
-    .then(res => res.json())
-    .then(console.log)
-  }
   render() {
+    const {value, onChange, onSubmit} = this.props
     return (
-      <div>MyComponent</div>
+      <form onSubmit={e => onChange(e, value)}>
+        <FormControl fullWidth>
+          <Input
+            onChange={e => onChange(e.target.value)}
+            value={value} key={value}
+          />
+          <Button value={value} type="submit">Search</Button>
+        </FormControl>
+      </form>
     );
   }
-
 }
 
-export default MedicationSearch;
+export default MedicationSearch
