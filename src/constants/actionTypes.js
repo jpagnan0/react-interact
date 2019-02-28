@@ -1,4 +1,10 @@
+export const AUTH_REQ = 'AUTH_REQ';  
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAILURE = 'AUTH_FAILURE';
+export const LOGOUT = 'LOGOUT';
 export const SET_TERM = 'SET_TERM';
 export const INVALID_TERM = 'INVALID_TERM';
 export const REQUEST_MEDICATIONS = 'REQUEST_MEDICATIONS';
 export const RECEIVE_MEDICATIONS = 'RECEIVE_MEDICATIONS';
+export const SET_RXCUI = 'SET_RXCUI';
+export const ADD_USER_MEDICATION = 'ADD_USER_MEDICATION';

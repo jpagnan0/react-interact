@@ -21,9 +21,9 @@ const styles = theme => ({
     marginBottom: 3,
   },
 });
+
 const Medication = props => {
-  const { classes, theme } = props;
-  console.log("theme:", theme)
+  const { classes, theme, handleClick } = props;
   return (
     <Grid item lg={4} md={4} sm={4} xs={12}>
       <Card className={classes.cardSpacer} square={true}>
@@ -44,7 +44,7 @@ const Medication = props => {
         </CardContent>
 
         <CardActions>
-          <Button size="medium">Add to current meds</Button>
+          <Button onClick={() => handleClick(props.med.rxcui)} size="medium">Add to current meds</Button>
         </CardActions>
       </Card>
     </Grid>

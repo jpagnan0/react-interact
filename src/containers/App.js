@@ -9,8 +9,9 @@ import {
 import NavigationBar from "./NavigationBar";
 import MedicationSearch from "../components/MedicationSearch";
 import MedicationList from "./MedicationList";
+import UserMedicationList from "./UserMedicationList";
 import LoginForm from "../components/LoginForm";
-import SignUpForm from "../components/SignUpForm";
+import SignUpFormContainer from "./SignUpFormContainer";
 
 class App extends Component {
   constructor(props) {
@@ -44,12 +45,13 @@ class App extends Component {
       <CssBaseline>
         <Route path="/" component={NavigationBar} />
         <Route exact path='/login' component={LoginForm} />
-        <Route exact path='/signup' component={SignUpForm} />
-        <MedicationSearch
+        <Route exact path='/signup' component={SignUpFormContainer} />
+        {/* <MedicationSearch
           medicationTerm={this.medicationTerm}
           onChange={this.handleChange}
-        />
-        <MedicationList medications={this.props.medications} />
+          />
+          <MedicationList medications={this.props.medications} />
+        <UserMedicationList medications={this.props.medications} /> */}
       </CssBaseline>
     );
   }

@@ -56,16 +56,20 @@ function SignUpForm(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign Up
         </Typography>
-        <form className={classes.form}>
+        <form onSubmit={() => { props.handleSubmit()}} className={classes.form}>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
+            <InputLabel htmlFor="username">username</InputLabel>
+            <Input id="username" name="username" autoComplete="username" autoFocus value={props.username}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
+            <InputLabel htmlFor="password">password</InputLabel>
+            <Input name="password" type="password" id="password" autoComplete="current-password" value={props.password}/>
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="confirmPassword">confirm password</InputLabel>
+            <Input name="confirmPassword" type="password" id="confirmPassword" autoComplete="current-password" />
           </FormControl>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
