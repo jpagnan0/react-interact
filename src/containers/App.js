@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Switch, Route } from 'react-router'
+import CssBaseline from "@material-ui/core/CssBaseline"
 import {
   medicationTerm,
   doFetchMedications
 } from "../actions/medication";
+import NavigationBar from "./NavigationBar";
 import MedicationSearch from "../components/MedicationSearch";
 import MedicationList from "./MedicationList";
+import LoginForm from "../components/LoginForm";
+import SignUpForm from "../components/SignUpForm";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,16 +41,16 @@ class App extends Component {
   render() {
     const { medicationTerm, medications } = this.props;
     return (
-      <div className="App">
-
+      <CssBaseline>
+        <Route path="/" component={NavigationBar} />
+        <Route exact path='/login' component={LoginForm} />
+        <Route exact path='/signup' component={SignUpForm} />
         <MedicationSearch
           medicationTerm={this.medicationTerm}
           onChange={this.handleChange}
         />
-
         <MedicationList medications={this.props.medications} />
-
-      </div>
+      </CssBaseline>
     );
   }
 }
