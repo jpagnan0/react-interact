@@ -1,9 +1,7 @@
 import fetch from 'cross-fetch';
 import {
   RECEIVE_MEDICATIONS,
-  // REQUEST_MEDICATIONS,
   SET_TERM,
-  INVALID_TERM
 } from '../constants/actionTypes';
 
 const MEDICATION_URL = `http://localhost:3000/api/v1/search?medication_name=`;
@@ -11,13 +9,6 @@ const MEDICATION_URL = `http://localhost:3000/api/v1/search?medication_name=`;
 export function setTerm(medication) {
   return{
     type: SET_TERM,
-    medication
-  }
-}
-
-export function invalidTerm(medication) {
-  return {
-    type: INVALID_TERM,
     medication
   }
 }

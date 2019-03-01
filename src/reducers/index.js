@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
+import { connectRouter } from 'connected-react-router'
+
 import {
   RECEIVE_MEDICATIONS,
   SET_TERM,
-  INVALID_TERM
 } from "../constants/actionTypes";
 
 function medicationTerm(state = '', action) {
@@ -15,8 +16,6 @@ function medicationTerm(state = '', action) {
       return state;
   }
 }
-
-
 
 function medicationsReducer(state = {
     medications: []
@@ -40,9 +39,10 @@ function medicationsReducer(state = {
   }
 }
 
-const rootReducer = combineReducers({
+const rootReducer = (history) => combineReducers({
   medicationTerm: medicationTerm,
-  medicationsReducer: medicationsReducer
+  medicationsReducer: medicationsReducer,
+  router: connectRouter(history),
 });
 
 export default rootReducer;
