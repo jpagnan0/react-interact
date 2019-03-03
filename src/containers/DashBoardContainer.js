@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Switch, Route } from 'react-router'
 import CssBaseline from "@material-ui/core/CssBaseline"
+import MedicationSearch from '../components/MedicationSearch';
+import MedicationList from './MedicationList';
 import {
   medicationTerm,
   doFetchMedications
 } from "../actions/medication";
-import NavigationBar from "./NavigationBar";
-import MedicationSearch from "../components/MedicationSearch";
-import MedicationList from "./MedicationList";
-import LoginForm from "../components/LoginForm";
-import SignUpForm from "../components/SignUpForm";
 
 class DashBoardContainer extends Component {
   constructor(props) {

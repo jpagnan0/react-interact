@@ -1,4 +1,6 @@
 export const SET_TERM = 'SET_TERM';
-export const INVALID_TERM = 'INVALID_TERM';
-export const REQUEST_MEDICATIONS = 'REQUEST_MEDICATIONS';
 export const RECEIVE_MEDICATIONS = 'RECEIVE_MEDICATIONS';
+// export const ADD_USER = 'ADD_USER';
+export const SIGNUP = 'SIGNUP';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT'

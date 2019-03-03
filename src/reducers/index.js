@@ -1,10 +1,13 @@
 import { combineReducers } from "redux";
 import { connectRouter } from 'connected-react-router'
-
 import {
   RECEIVE_MEDICATIONS,
   SET_TERM,
+  // SIGNUP,
+  // LOGIN,
+  // LOGOUT
 } from "../constants/actionTypes";
+import {userReducer} from './userReducer';
 
 function medicationTerm(state = '', action) {
   console.log('state in medicationTermReducer:', state)
@@ -40,6 +43,7 @@ function medicationsReducer(state = {
 }
 
 const rootReducer = (history) => combineReducers({
+  userReducer: userReducer,
   medicationTerm: medicationTerm,
   medicationsReducer: medicationsReducer,
   router: connectRouter(history),

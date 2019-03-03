@@ -46,7 +46,7 @@ const styles = theme => ({
 });
 
 function LoginForm(props) {
-  const { classes } = props;
+  const { classes, user } = props;
 
   return (
     <main className={classes.main}>
@@ -56,12 +56,12 @@ function LoginForm(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login
         </Typography>
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
+            <InputLabel htmlFor="username">username</InputLabel>
+            <Input id="username" name="username" autoComplete="username" autoFocus />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>

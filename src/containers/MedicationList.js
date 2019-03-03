@@ -6,6 +6,9 @@ import Medication from '../components/Medication';
 
 
 class MedicationList extends Component {
+  handleClick = (rxcui) => {
+    console.log(rxcui)
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -16,7 +19,7 @@ class MedicationList extends Component {
         alignItems="stretch"
       >
         {this.props.medications.map((med, i) => (
-          <Medication med={med} key={i} />
+          <Medication handleClick={this.handleClick} med={med} key={i} />
         ))}
       </Grid>
     );

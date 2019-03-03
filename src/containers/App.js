@@ -1,22 +1,17 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import NavigationBar from "./NavigationBar";
+import routes from "../routes";
+import { ConnectedRouter } from 'connected-react-router'
 
-class App extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <CssBaseline>
-        <NavigationBar />
-      </CssBaseline>
-    );
-  }
+export default function App({history}) {
+  return (
+    <ConnectedRouter history={history}>
+      {routes}
+    </ConnectedRouter>
+  );
 }
 
-export default App;
+App.propTypes = {
+
+};
