@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -26,24 +28,32 @@ class NavigationBar extends Component {
     const { classes } = this.props;
     // const { theme } = this.props;
     return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              Interact
-            </Typography>
-            <Button href="/signup" >
-              Sign Up
-            </Button>
-            <Button href="/login" color="secondary">
-              Log In
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </div>
+      <CssBaseline>
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="Menu"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" color="inherit" className={classes.grow}>
+                Interact
+              </Typography>
+              <Button color="secondary">
+                <Link to="/signup"/>
+                  Sign Up
+                </Button>
+                <Button color="secondary">
+                <Link to="/login"/>
+                Log in
+              </Button>
+            </Toolbar>
+          </AppBar>
+        </div>
+      </CssBaseline>
     );
   }
 }
