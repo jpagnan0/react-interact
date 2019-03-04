@@ -64,6 +64,11 @@ export function signup(user, dispatch) {
           user
         }
       })
+      dispatch({
+        type: LOGIN,
+        payload: user,
+        token: jwt
+      })
       localStorage.setItem('token', jwt)
       dispatch(push('/'))
     })

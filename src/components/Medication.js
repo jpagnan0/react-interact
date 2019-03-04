@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-
+import { Link } from 'react-router-dom'
 const styles = theme => ({
   card: {
     maxWidth: 400
@@ -18,9 +18,12 @@ const styles = theme => ({
     marginBottom: 6
   },
   cardSpacer: {
+    marginRight: 3,
     marginBottom: 3,
   },
 });
+
+
 const Medication = props => {
   const { classes, theme } = props;
   console.log("theme:", theme)
@@ -44,7 +47,9 @@ const Medication = props => {
         </CardContent>
 
         <CardActions>
-          <Button size="medium" onClick={() => props.handleClick(props.med)}>Add to current meds</Button>
+          <Button size="medium" onClick={() => props.handleClick(props.med)}>
+            {props.name === "user-med-list" ? "Remove current meds" : "Add to current med"}
+          </Button>
         </CardActions>
       </Card>
     </div>

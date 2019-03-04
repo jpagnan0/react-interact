@@ -18,7 +18,7 @@ class UserMedicationList extends Component {
         alignItems="stretch"
       >
         {this.props.currentMedications.map((med, i) => (
-          <Medication med={med} key={i} />
+          <Medication name="user-med-list" med={med} key={i} />
         ))}
       </Grid>
     );

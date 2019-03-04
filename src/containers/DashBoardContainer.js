@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { Switch, Route } from 'react-router'
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import CssBaseline from "@material-ui/core/CssBaseline"
 import {
   medicationTerm,
@@ -67,28 +69,33 @@ class DashBoardContainer extends Component {
           spacing={0}
         >
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <MedicationList handleClick={this.handleClick} medications={this.props.medications} />
+            <Paper>
+              <Typography variant="h4" color="inherit">
+                Search Results
+              </Typography>
+              <MedicationList handleClick={this.handleClick} medications={this.props.medications} />
+            </Paper>
+            </Grid>
+
+            <Grid item lg={4} md={4} sm={4} xs={12}>
+              <UserMedicationList currentMedications={this.state.currentMedications} />
+            </Grid>
+
           </Grid>
+        </CssBaseline>
+        );
+        }
+        }
+        function mapStateToProps(state) {
+          console.log("state in <DashBoardContainer /> @fn mapStateToProps():", state);
 
-          <Grid item lg={4} md={4} sm={4} xs={12}>
-            <UserMedicationList currentMedications={this.state.currentMedications} />
-          </Grid>
-
-        </Grid>
-      </CssBaseline>
-    );
-  }
-}
-function mapStateToProps(state) {
-  console.log("state in <DashBoardContainer /> @fn mapStateToProps():", state);
-
-  return {
-    loggedInUser: state.loggedInUser,
-    medicationTerm: state.medicationTerm,
-    medications: [...state.medicationsReducer.medications]
-  };
-}
-export default connect(
-  mapStateToProps,
-  { doFetchMedications: doFetchMedications, medicationTerm: medicationTerm }
-)(DashBoardContainer); // export default withRouter(DashBoardContainer);
+          return {
+            loggedInUser: state.loggedInUser,
+            medicationTerm: state.medicationTerm,
+            medications: [...state.medicationsReducer.medications]
+          };
+        }
+        export default connect(
+        mapStateToProps,
+        { doFetchMedications: doFetchMedications, medicationTerm: medicationTerm }
+        )(DashBoardContainer); // export default withRouter(DashBoardContainer);
