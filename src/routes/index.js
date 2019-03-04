@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router'
 import NavigationBar from "../containers/NavigationBar";
 import DashBoardContainer from "../containers/DashBoardContainer"
-import SignUpForm from "../components/SignUpForm";
+import Login from "../components/Login";
 const routes = (
   <div>
     <NavigationBar />
@@ -10,7 +10,7 @@ const routes = (
       {/* <Route path="/signup" component={AuthContainer} /> */}
 
       <Route exact path="/" component={DashBoardContainer} />
-      <Route path="/signup" component={SignUpForm} />
+      <Route exact path="/signin" component={Login} />
 
     </Switch>
   </div>
