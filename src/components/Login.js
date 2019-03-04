@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {setCurrentUser, signin} from "../actions/auth";
+import {getCurrentUser, login} from "../actions/auth";
 // import { withAuth } from "react-authmanager";
 import PropTypes from "prop-types";
 import Avatar from "@material-ui/core/Avatar";
@@ -55,12 +55,9 @@ export class Login extends Component {
 
     this.state = {
       user: {
-        name: "",
         username: "",
-        password: "",
-        confirmPassword: ""
-      },
-      submitted: false
+        password: ""
+      }
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -80,8 +77,8 @@ export class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
     // const {name, username, password} = this.state;
-    this.props.dispatch(signin(this.state.user))
-    console.log("setCurrentUser:", signin(this.state.user))
+    this.props.dispatch(login(this.state.user))
+    // console.log("setCurrentUser:", signUp(this.state.user))
 
     console.log("user:" , this.state.user)
     // console.log("dispatch:" , dispatch)
@@ -97,18 +94,10 @@ export class Login extends Component {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign Up
+            Log In
           </Typography>
           <form className={classes.form} onSubmit={this.handleSubmit}>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="name">Full Name</InputLabel>
-              <Input
-                id="name"
-                name="name"
-                autoFocus
-                onChange={this.handleChange}
-              />
-            </FormControl>
+
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="username">User Name</InputLabel>
               <Input
@@ -123,17 +112,6 @@ export class Login extends Component {
                 name="password"
                 type="password"
                 id="password"
-                onChange={this.handleChange}
-              />
-            </FormControl>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="confirmPassword">
-                Confirm Password
-              </InputLabel>
-              <Input
-                name="confirmPassword"
-                type="password"
-                id="confirmPassword"
                 onChange={this.handleChange}
               />
             </FormControl>
@@ -164,11 +142,12 @@ export class Login extends Component {
 // }
 // export default withStyles(styles)(Login);
 function mapStateToProps(state) {
-  const { user } = state.auth;
+  const {user} = state.loggedInUser
+  const {token} = state;
   const { router } = state;
     return {
       user,
-      router
+      token 
     };
 }
 //

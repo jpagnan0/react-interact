@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {setCurrentUser, signUp} from "../actions/auth";
+import {setCurrentUser, signup} from "../actions/auth";
 // import { withAuth } from "react-authmanager";
 import PropTypes from "prop-types";
 import Avatar from "@material-ui/core/Avatar";
@@ -49,7 +49,7 @@ const styles = theme => ({
   }
 });
 
-export class LoginForm extends Component {
+export class SignUp extends Component {
   constructor(props) {
     super(props);
 
@@ -80,8 +80,8 @@ export class LoginForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     // const {name, username, password} = this.state;
-    this.props.dispatch(login(this.state.user))
-    // console.log("setCurrentUser:", signUp(this.state.user))
+    this.props.dispatch(signup(this.state.user))
+    // console.log("setCurrentUser:", signin(this.state.user))
 
     console.log("user:" , this.state.user)
     // console.log("dispatch:" , dispatch)
@@ -97,10 +97,18 @@ export class LoginForm extends Component {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Log In
+            Sign Up
           </Typography>
           <form className={classes.form} onSubmit={this.handleSubmit}>
-
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="name">Full Name</InputLabel>
+              <Input
+                id="name"
+                name="name"
+                autoFocus
+                onChange={this.handleChange}
+              />
+            </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="username">User Name</InputLabel>
               <Input
@@ -115,6 +123,17 @@ export class LoginForm extends Component {
                 name="password"
                 type="password"
                 id="password"
+                onChange={this.handleChange}
+              />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="confirmPassword">
+                Confirm Password
+              </InputLabel>
+              <Input
+                name="confirmPassword"
+                type="password"
+                id="confirmPassword"
                 onChange={this.handleChange}
               />
             </FormControl>
@@ -143,7 +162,7 @@ export class LoginForm extends Component {
 //   ... // get current logged user informations from the server with an ajax call
 //   return user;
 // }
-// export default withStyles(styles)(LoginForm);
+// export default withStyles(styles)(SignUp);
 function mapStateToProps(state) {
   const { user } = state.auth;
   const { router } = state;
@@ -154,4 +173,4 @@ function mapStateToProps(state) {
 }
 //
 //
-export default connect(mapStateToProps)(withStyles(styles)(LoginForm))
+export default connect(mapStateToProps)(withStyles(styles)(SignUp))

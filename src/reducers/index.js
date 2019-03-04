@@ -70,14 +70,14 @@ function authReducer(state={
 }
 
 function currentUser (state = {
-  username: "",
-  password: ""
 }, action) {
   switch (action.type) {
     case LOGIN:
-      return { ...state, user: action.payload.user}
-    case LOGOUT:
-      return {...state, user: {}}
+      const {token} = action
+      const {id, name, username, medications, interactions } = action.payload
+      return { ...state, ...{id, name, username, medications, interactions, token}}
+    // case LOGOUT:
+    //   return {...state, user: null}
     default:
       return state
   }
@@ -86,7 +86,7 @@ function currentUser (state = {
 const rootReducer = (history) => combineReducers({
   medicationTerm: medicationTerm,
   medicationsReducer: medicationsReducer,
-  user: currentUser,
+  loggedInUser: currentUser,
   auth:  authReducer,
   router: connectRouter(history),
 });

@@ -3,24 +3,26 @@ import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import Grid from '@material-ui/core/Grid';
 import Medication from '../components/Medication';
+import { withStyles } from "@material-ui/core/styles";
 
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
 
+})
 class MedicationList extends Component {
+
   render() {
     const { classes } = this.props;
     return (
-      <Grid
-        container
-        direction="column"
-        justify="space-between"
-        alignItems="stretch"
-      >
+      <div>
         {this.props.medications.map((med, i) => (
-          <Medication med={med} key={i} />
+          <Medication handleClick={this.props.handleClick} med={med} key={i} />
         ))}
-      </Grid>
+      </div>
     );
   }
 }
 
-export default MedicationList
+export default withStyles(styles)(MedicationList)

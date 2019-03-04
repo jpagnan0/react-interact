@@ -9,7 +9,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   card: {
-    maxWidth: 275
+    maxWidth: 400
   },
   title: {
     fontSize: 14
@@ -25,8 +25,8 @@ const Medication = props => {
   const { classes, theme } = props;
   console.log("theme:", theme)
   return (
-    <Grid item lg={4} md={4} sm={4} xs={12}>
-      <Card className={classes.cardSpacer} square={true}>
+    <div className={classes.cardSpacer}>
+      <Card className={classes.card} square={true}>
         <CardContent>
           <Typography
             className={classes.title}
@@ -44,10 +44,10 @@ const Medication = props => {
         </CardContent>
 
         <CardActions>
-          <Button size="medium">Add to current meds</Button>
+          <Button size="medium" onClick={() => props.handleClick(props.med)}>Add to current meds</Button>
         </CardActions>
       </Card>
-    </Grid>
-  );
-};
-export default withStyles(styles)(Medication);
+    </div>
+      );
+    };
+      export default withStyles(styles)(Medication);

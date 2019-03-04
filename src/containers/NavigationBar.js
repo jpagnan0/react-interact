@@ -41,7 +41,7 @@ class NavigationBar extends Component {
               <Typography variant="h6" color="inherit" className={classes.grow}>
                 Interact
               </Typography>
-              <Button href="/signin" color="secondary">
+              <Button href="/signup" color="secondary">
                 {/* <Link to="/signup" /> */}
                   Sign Up
               </Button>

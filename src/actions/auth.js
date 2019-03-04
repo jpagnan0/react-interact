@@ -24,28 +24,31 @@ export function getCurrentUser(currentUser) {
   }
 }
 
-export function login(user) {
-  const request = new Request(`${API}/current_user`, {
+export function login({username, password}) {
+  const request = new Request(`${API}/auth`, {
     method: "POST",
     headers: new Headers({"Content-Type": "application/json", "Authorization": `Bearer ${localStorage.token}`}),
-    body: JSON.stringify(getCurrentUser(user))
+    body: JSON.stringify({user:{ username: username, password: password }})
   })
   return dispatch => {
     return fetch(request).then(res => res.json()).then(res => {
-      const {user} = res
-      dispatch({type: LOGIN, payload: user})
-    })
+      const {user, jwt} = res
+
+      // if(jwt === localStorage.token)
+        dispatch({type: LOGIN, payload: user, token: jwt})
+        dispatch(push('/'))
+
+    }).catch((err) => { alert(err)})
   }
 
 }
 
-export function signin(user, dispatch) {
-  console.log("user in auth action: ", user)
+export function signup(user, dispatch) {
+  // console.log("user in auth action: ", user)
   return dispatch => {
     return fetch(`${API}/users`, {
      method: "POST",
      headers: {
-        Authorization: `Bearer <token>`,
        "Accept":"application/json",
        "Content-Type":"application/json"
      },
