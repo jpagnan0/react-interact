@@ -1,31 +1,32 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { Switch, Route } from 'react-router'
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import CssBaseline from "@material-ui/core/CssBaseline"
-import {
-  medicationTerm,
-  doFetchMedications
-} from "../actions/medication";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { medicationTerm, doFetchMedications } from "../actions/medication";
 import MedicationSearch from "../components/MedicationSearch";
 import MedicationList from "./MedicationList";
 import UserMedicationList from "./UserMedicationList";
 
 class DashBoardContainer extends Component {
   constructor(props) {
-
     super(props);
-    this.state={
+    this.state = {
       currentMedications: []
-    }
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    const { doFetchMedications, medicationTerm, medications, loggedInUser} = this.props;
+    const {
+      doFetchMedications,
+      medicationTerm,
+      medications,
+      loggedInUser
+    } = this.props;
   }
 
   componentDidUpdate(prevProps) {
@@ -39,18 +40,16 @@ class DashBoardContainer extends Component {
   }
 
   handleChange(nextMedication) {
-    console.log('handleChange @nextMedication:', nextMedication )
+    console.log("handleChange @nextMedication:", nextMedication);
     this.props.medicationTerm(nextMedication);
     this.props.doFetchMedications(nextMedication);
   }
 
-
   handleClick(med) {
     this.setState({
       currentMedications: [...this.state.currentMedications, med]
-    })
+    });
   }
-
 
   render() {
     const { medicationTerm, medications, loggedInUser } = this.props;
@@ -64,38 +63,58 @@ class DashBoardContainer extends Component {
         <Grid
           container
           direction="row"
-          justify="flex-start"
+          justify="flex"
           alignItems="stretch"
           spacing={0}
         >
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Paper>
-              <Typography variant="h4" color="inherit">
+            <Paper alignItems="center">
+              <Typography variant="h5" color="inherit">
                 Search Results
               </Typography>
-              <MedicationList handleClick={this.handleClick} medications={this.props.medications} />
+              <MedicationList
+                handleClick={this.handleClick}
+                medications={this.props.medications}
+              />
             </Paper>
-            </Grid>
-
-            <Grid item lg={4} md={4} sm={4} xs={12}>
-              <UserMedicationList currentMedications={this.state.currentMedications} />
-            </Grid>
-
           </Grid>
-        </CssBaseline>
-        );
-        }
-        }
-        function mapStateToProps(state) {
-          console.log("state in <DashBoardContainer /> @fn mapStateToProps():", state);
 
-          return {
-            loggedInUser: state.loggedInUser,
-            medicationTerm: state.medicationTerm,
-            medications: [...state.medicationsReducer.medications]
-          };
-        }
-        export default connect(
-        mapStateToProps,
-        { doFetchMedications: doFetchMedications, medicationTerm: medicationTerm }
-        )(DashBoardContainer); // export default withRouter(DashBoardContainer);
+          <Grid item lg={4} md={4} sm={4} xs={12}>
+            <Paper>
+              <Typography variant="h5" color="inherit">
+                Current Medications
+              </Typography>
+              <UserMedicationList
+                currentMedications={this.state.currentMedications}
+              />
+            </Paper>
+          </Grid>
+
+          <Grid item lg={4} md={4} sm={4} xs={12}>
+            <Paper>
+              <Typography variant="h5" color="inherit">
+                Interactions
+              </Typography>
+              <UserMedicationList
+                currentMedications={this.state.currentMedications}
+              />
+            </Paper>
+          </Grid>
+        </Grid>
+      </CssBaseline>
+    );
+  }
+}
+function mapStateToProps(state) {
+  console.log("state in <DashBoardContainer /> @fn mapStateToProps():", state);
+
+  return {
+    loggedInUser: state.loggedInUser,
+    medicationTerm: state.medicationTerm,
+    medications: [...state.medicationsReducer.medications]
+  };
+}
+export default connect(
+  mapStateToProps,
+  { doFetchMedications: doFetchMedications, medicationTerm: medicationTerm }
+)(DashBoardContainer); // export default withRouter(DashBoardContainer);
