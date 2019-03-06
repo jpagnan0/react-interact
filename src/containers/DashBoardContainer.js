@@ -11,6 +11,7 @@ import { postUserMedication, updateUserMedications } from "../actions/userMedica
 import MedicationSearch from "../components/MedicationSearch";
 import MedicationList from "./MedicationList";
 import UserMedicationList from "./UserMedicationList";
+import InteractionList from './InteractionList';
 
 class DashBoardContainer extends Component {
   constructor(props) {
@@ -30,22 +31,18 @@ class DashBoardContainer extends Component {
     } = this.props;
 
     updateUserMedications(loggedInUser.id)
+
   }
 
   componentDidUpdate(prevProps) {
-    console.log("componentDidUpdate @prevProps:", prevProps);
-    console.log("componentDidUpdate @this.props:", this.props);
+    // console.log("componentDidUpdate @prevProps:", prevProps);
+    // console.log("componentDidUpdate @this.props:", this.props);
 
     if (this.props.medicationTerm.search !== prevProps.medicationTerm.search) {
       let { dispatch, medicationTerm } = this.props;
       dispatch(medicationTerm(medicationTerm));
       dispatch(doFetchMedications(medicationTerm));
     }
-    // if (this.props.currentMedications !== prevProps.currentMedications) {
-    //   let { dispatch, loggedInUser} = this.props
-    //   dispatch(updateUserMedications(loggedInUser.id))
-    // }
-
   }
 
   handleChange(nextMedication) {
@@ -63,11 +60,15 @@ class DashBoardContainer extends Component {
     this.props.updateUserMedications(id)
   }
 
-
+  getUserInteractions = (id) => {
+    fetch(`http://localhost:3000/api/v1/user_interactions/${id}`)
+    .then(res => res.json())
+    .then(console.log)
+  }
   render() {
     const { medicationTerm, medications, loggedInUser, getCurrentUser, updateUserMedications, currentMedications} = this.props;
     // const { medications, interactions } = loggedInUser;
-    // const { interactions } = loggedInUser;
+    const { interactions } = loggedInUser;
 
     // const { currentMedications } = this.state;
     // const userMeds = loggedInUser.medications;
@@ -86,12 +87,13 @@ class DashBoardContainer extends Component {
           justify="center"
           alignItems="stretch"
           spacing={0}
+          align="center"
         >
           <Grid item lg={4} md={4} sm={4} xs={12}>
             <Typography variant="h5" color="inherit" align="center">
               Search Results
             </Typography>
-            <Grid container>
+            <Grid item align="center">
               <MedicationList
                 handleClick={this.handleClick}
                 medications={this.props.medications}
@@ -101,23 +103,22 @@ class DashBoardContainer extends Component {
 
           <Grid item lg={4} md={4} sm={4} xs={12}>
             <Typography variant="h5" color="inherit" align="center">
+              Interactions
+            </Typography>
+            <InteractionList currentInteractions={interactions} />
+          </Grid>
+
+          <Grid item lg={4} md={4} sm={4} xs={12}>
+            <Typography variant="h5" color="inherit" align="center">
               Current Medications
             </Typography>
             <UserMedicationList
               currentMedications={currentMedications}
             />
-            {/* {currentMedications.length > 0 ? <Button onClick={() => (currentMedications)}>Check Interactions</Button>: ''} */}
+            {/* send the request to rails /user_interactions/:id => loggedInUser.id  @return  */}
+            {/* {(loggedInUser === {} || currentMedications === []) ? <Button onClick={()=> {this.getUserInteractions(loggedInUser.id)}}>Check Interactions</Button> : ''} */}
           </Grid>
 
-          <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Typography variant="h5" color="inherit" align="center">
-              Interactions
-            </Typography>
-            {/* <UserMedicationList
-                currentMedications={this.state.currentMedications}
-            /> */}
-
-          </Grid>
         </Grid>
       </div>
     );

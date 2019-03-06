@@ -18,7 +18,6 @@ export function authReducer(
   },
   action
 ) {
-  // debugger
   switch (action.type) {
     case AUTHENTICATED:
       return {
@@ -44,8 +43,6 @@ export function currentUser(state = {}, action) {
         ...state,
         ...{ id, name, username, medications, interactions, token }
       };
-    // case LOGOUT:
-    //   return {...state, user: null}
     default:
       return state;
   }

@@ -9,6 +9,7 @@ import Medication from '../components/Medication';
 
 class UserMedicationList extends Component {
   removeUserMedication = (med) => {
+    
     console.log(med)
   }
   render() {

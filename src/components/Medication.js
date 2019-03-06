@@ -9,7 +9,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 const styles = theme => ({
   card: {
-    maxWidth: 400
+    maxWidth: 500,
+    height: 250
   },
   title: {
     fontSize: 14
@@ -23,7 +24,7 @@ const styles = theme => ({
 });
 
 const Medication = props => {
-  const { classes, theme, name, med, handleClick, getUserMeds } = props;
+  const { classes, theme, name, med, handleClick, removeUserMedication } = props;
   console.log("theme:", theme);
   return (
     <div className={classes.cardSpacer}>
@@ -46,7 +47,7 @@ const Medication = props => {
           <Button
             size="medium"
             onClick={e => {
-              name === "user-med-list" ? getUserMeds(e,med) : handleClick(e,med)
+              name === "user-med-list" ? removeUserMedication(e,med) : handleClick(e,med)
             }}
           >
             {name === "user-med-list"
