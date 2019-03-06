@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Button from "@material-ui/core/Button";
 import { medicationTerm, doFetchMedications } from "../actions/medication";
-import { postUserMedication, getUserMedications } from "../actions/userMedications";
+import { postUserMedication, updateUserMedications } from "../actions/userMedications";
 import MedicationSearch from "../components/MedicationSearch";
 import MedicationList from "./MedicationList";
 import UserMedicationList from "./UserMedicationList";
@@ -26,7 +26,10 @@ class DashBoardContainer extends Component {
       medications,
       loggedInUser,
       currentMedications,
+      updateUserMedications,
     } = this.props;
+
+    updateUserMedications(loggedInUser.id)
   }
 
   componentDidUpdate(prevProps) {
@@ -38,10 +41,10 @@ class DashBoardContainer extends Component {
       dispatch(medicationTerm(medicationTerm));
       dispatch(doFetchMedications(medicationTerm));
     }
-    if (this.props.currentMedications !== prevProps.currentMedications) {
-      let { dispatch, loggedInUser} = this.props
-      dispatch(getUserMedications(loggedInUser.id))
-    }
+    // if (this.props.currentMedications !== prevProps.currentMedications) {
+    //   let { dispatch, loggedInUser} = this.props
+    //   dispatch(updateUserMedications(loggedInUser.id))
+    // }
 
   }
 
@@ -57,17 +60,17 @@ class DashBoardContainer extends Component {
     const {id} = this.props.loggedInUser;
 
     this.props.postUserMedication(med, id)
-    this.props.getUserMedications(id)
+    this.props.updateUserMedications(id)
   }
 
 
   render() {
-    const { medicationTerm, medications, loggedInUser, getCurrentUser, getUserMedications, currentMedications} = this.props;
+    const { medicationTerm, medications, loggedInUser, getCurrentUser, updateUserMedications, currentMedications} = this.props;
     // const { medications, interactions } = loggedInUser;
-    const { interactions } = loggedInUser;
+    // const { interactions } = loggedInUser;
 
     // const { currentMedications } = this.state;
-    const userMeds = loggedInUser.medications;
+    // const userMeds = loggedInUser.medications;
 
     return (
       <div>
@@ -101,8 +104,7 @@ class DashBoardContainer extends Component {
               Current Medications
             </Typography>
             <UserMedicationList
-              currentMedications={userMeds}
-
+              currentMedications={currentMedications}
             />
             {/* {currentMedications.length > 0 ? <Button onClick={() => (currentMedications)}>Check Interactions</Button>: ''} */}
           </Grid>
@@ -125,7 +127,7 @@ function mapStateToProps(state) {
   console.log("state in <DashBoardContainer /> @fn mapStateToProps():", state);
   return {
     loggedInUser: state.loggedInUser,
-    currentMedications: state.loggedInUser.medications,
+    currentMedications: state.currentUserMedications.userMedications,
     medicationTerm: state.medicationTerm,
     medications: [...state.medicationsReducer.medications]
   };
@@ -136,6 +138,6 @@ export default connect(
     doFetchMedications: doFetchMedications,
     medicationTerm: medicationTerm,
     postUserMedication: postUserMedication,
-    getUserMedications: getUserMedications
+    updateUserMedications: updateUserMedications
   }
 )(DashBoardContainer); // export default withRouter(DashBoardContainer);

@@ -1,9 +1,12 @@
 import { POST_USER_MEDICATIONS, GET_USER_MEDICATIONS } from "../constants/actionTypes";
 import { push } from "connected-react-router";
 const API = `http://localhost:3000/api/v1`;
-
+export function getUserMeds() {
+  return  { type: GET_USER_MEDICATIONS }
+}
 export function postUserMedication({ rxcui, name, name_alt},id, dispatch) {
   return dispatch => {
+    dispatch(updateUserMedications(id))
     return fetch(`${API}/user_medications`, {
       method: "POST",
       headers: {
@@ -18,7 +21,8 @@ export function postUserMedication({ rxcui, name, name_alt},id, dispatch) {
       })
     })
       .then(r => r.json())
-      .then(res => dispatch({ type: POST_USER_MEDICATIONS, payload: res}));
+      .then(res => dispatch({ type: POST_USER_MEDICATIONS, payload: res}))
+      .then(() =>  dispatch(updateUserMedications(id)));
   };
 }
 
@@ -26,7 +30,7 @@ export function getUserMedications (id, dispatch) {
   return dispatch => {
     return fetch(`${API}/user/${id}`)
     .then(r => r.json())
-    .then(res => dispatch({ type: GET_USER_MEDICATIONS, payload: res}))
+    .then(res => dispatch({ type: GET_USER_MEDICATIONS, payload:res.medications}))
   }
 };
 export function updateUserMedications(id) {
