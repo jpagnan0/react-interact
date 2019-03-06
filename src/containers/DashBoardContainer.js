@@ -5,7 +5,9 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Button from "@material-ui/core/Button";
 import { medicationTerm, doFetchMedications } from "../actions/medication";
+import { postUserMedication, getUserMedications } from "../actions/userMedications";
 import MedicationSearch from "../components/MedicationSearch";
 import MedicationList from "./MedicationList";
 import UserMedicationList from "./UserMedicationList";
@@ -13,9 +15,6 @@ import UserMedicationList from "./UserMedicationList";
 class DashBoardContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentMedications: []
-    };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -25,18 +24,25 @@ class DashBoardContainer extends Component {
       doFetchMedications,
       medicationTerm,
       medications,
-      loggedInUser
+      loggedInUser,
+      currentMedications,
     } = this.props;
   }
 
   componentDidUpdate(prevProps) {
     console.log("componentDidUpdate @prevProps:", prevProps);
     console.log("componentDidUpdate @this.props:", this.props);
+
     if (this.props.medicationTerm.search !== prevProps.medicationTerm.search) {
-      const { dispatch, medicationTerm } = this.props;
+      let { dispatch, medicationTerm } = this.props;
       dispatch(medicationTerm(medicationTerm));
       dispatch(doFetchMedications(medicationTerm));
     }
+    if (this.props.currentMedications !== prevProps.currentMedications) {
+      let { dispatch, loggedInUser} = this.props
+      dispatch(getUserMedications(loggedInUser.id))
+    }
+
   }
 
   handleChange(nextMedication) {
@@ -45,76 +51,91 @@ class DashBoardContainer extends Component {
     this.props.doFetchMedications(nextMedication);
   }
 
-  handleClick(med) {
-    this.setState({
-      currentMedications: [...this.state.currentMedications, med]
-    });
+  handleClick(e, med) {
+    console.log(e.target)
+    const {medications} = this.props;
+    const {id} = this.props.loggedInUser;
+
+    this.props.postUserMedication(med, id)
+    this.props.getUserMedications(id)
   }
 
-  render() {
-    const { medicationTerm, medications, loggedInUser } = this.props;
-    return (
-      <CssBaseline>
-        <MedicationSearch
-          medicationTerm={this.medicationTerm}
-          onChange={this.handleChange}
-        />
 
+  render() {
+    const { medicationTerm, medications, loggedInUser, getCurrentUser, getUserMedications, currentMedications} = this.props;
+    // const { medications, interactions } = loggedInUser;
+    const { interactions } = loggedInUser;
+
+    // const { currentMedications } = this.state;
+    const userMeds = loggedInUser.medications;
+
+    return (
+      <div>
+        <CssBaseline>
+          <MedicationSearch
+            medicationTerm={this.medicationTerm}
+            onChange={this.handleChange}
+          />
+        </CssBaseline>
         <Grid
           container
           direction="row"
-          justify="flex"
+          justify="center"
           alignItems="stretch"
           spacing={0}
         >
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Paper alignItems="center">
-              <Typography variant="h5" color="inherit">
-                Search Results
-              </Typography>
+            <Typography variant="h5" color="inherit" align="center">
+              Search Results
+            </Typography>
+            <Grid container>
               <MedicationList
                 handleClick={this.handleClick}
                 medications={this.props.medications}
               />
-            </Paper>
+            </Grid>
           </Grid>
 
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Paper>
-              <Typography variant="h5" color="inherit">
-                Current Medications
-              </Typography>
-              <UserMedicationList
-                currentMedications={this.state.currentMedications}
-              />
-            </Paper>
+            <Typography variant="h5" color="inherit" align="center">
+              Current Medications
+            </Typography>
+            <UserMedicationList
+              currentMedications={userMeds}
+
+            />
+            {/* {currentMedications.length > 0 ? <Button onClick={() => (currentMedications)}>Check Interactions</Button>: ''} */}
           </Grid>
 
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Paper>
-              <Typography variant="h5" color="inherit">
-                Interactions
-              </Typography>
-              <UserMedicationList
+            <Typography variant="h5" color="inherit" align="center">
+              Interactions
+            </Typography>
+            {/* <UserMedicationList
                 currentMedications={this.state.currentMedications}
-              />
-            </Paper>
+            /> */}
+
           </Grid>
         </Grid>
-      </CssBaseline>
+      </div>
     );
   }
 }
 function mapStateToProps(state) {
   console.log("state in <DashBoardContainer /> @fn mapStateToProps():", state);
-
   return {
     loggedInUser: state.loggedInUser,
+    currentMedications: state.loggedInUser.medications,
     medicationTerm: state.medicationTerm,
     medications: [...state.medicationsReducer.medications]
   };
 }
 export default connect(
   mapStateToProps,
-  { doFetchMedications: doFetchMedications, medicationTerm: medicationTerm }
+  {
+    doFetchMedications: doFetchMedications,
+    medicationTerm: medicationTerm,
+    postUserMedication: postUserMedication,
+    getUserMedications: getUserMedications
+  }
 )(DashBoardContainer); // export default withRouter(DashBoardContainer);

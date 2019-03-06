@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
 import Medication from '../components/Medication';
 import { withStyles } from "@material-ui/core/styles";
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -13,12 +12,15 @@ const styles = theme => ({
 })
 class MedicationList extends Component {
 
+  // handleClick = (med) => {
+  //   console.log(userMedications(med))
+  // }
   render() {
-    const { classes } = this.props;
+    const { medications, handleClick } = this.props;
     return (
       <div>
-        {this.props.medications.map((med, i) => (
-          <Medication handleClick={this.props.handleClick} med={med} key={i} />
+        {medications.map((med, i) => (
+          <Medication handleClick={handleClick} med={med} key={i} />
         ))}
       </div>
     );

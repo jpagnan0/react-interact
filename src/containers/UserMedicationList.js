@@ -1,28 +1,27 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button"
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from '@material-ui/core/Grid';
 import Medication from '../components/Medication';
-
+// import {userMedications} from '../actions/userMedications';
 
 class UserMedicationList extends Component {
-
+  removeUserMedication = (med) => {
+    console.log(med)
+  }
   render() {
-    const { classes } = this.props;
+    const { classes, currentMedications } = this.props;
+
     return (
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="stretch"
-      >
-        {this.props.currentMedications.map((med, i) => (
-          <Medication name="user-med-list" med={med} key={i} />
+      <div>
+        {currentMedications && currentMedications.map((med, i) => (
+          <Medication name="user-med-list" removeUserMedication={this.removeUserMedication} med={med} key={i} />
         ))}
-      </Grid>
+
+      </div>
     );
   }
 }
-
-export default UserMedicationList
+export default UserMedicationList;

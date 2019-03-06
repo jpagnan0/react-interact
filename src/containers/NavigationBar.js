@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -23,8 +24,14 @@ const styles = {
 };
 
 class NavigationBar extends Component {
+  componentDidMount() {
+    console.log(this.props.loggedInUser)
+  }
+  componentDidUpdate() {
+    console.log(this.props.loggedInUser)
+  }
   render() {
-    const { classes } = this.props;
+    const { classes, loggedInUser } = this.props;
     // const { theme } = this.props;
     return (
       <CssBaseline>
@@ -41,13 +48,16 @@ class NavigationBar extends Component {
               <Typography variant="h6" color="inherit" className={classes.grow}>
                 Interact
               </Typography>
+              <Typography variant="h6" color="inherit" className={classes.grow}>
+                {loggedInUser.token === localStorage.getItem('token') ?  `Welcome ${loggedInUser.name}` : 'HELLO'}
+              </Typography>
               <Button href="/signup" color="secondary">
                 {/* <Link to="/signup" /> */}
-                  Sign Up
+                Sign Up
               </Button>
               <Button href="/login" color="secondary">
                 {/* <Link to="/login"> Log In </Link> */}
-                Log in
+                {loggedInUser.token === localStorage.getItem('token') ? "Log Out" : "Login" }
               </Button>
             </Toolbar>
           </AppBar>
@@ -57,4 +67,9 @@ class NavigationBar extends Component {
   }
 }
 
-export default withStyles(styles)(NavigationBar);
+function mapStateToProps(state) {
+  return {
+    loggedInUser: state.loggedInUser
+  }
+}
+export default connect(mapStateToProps)(withStyles(styles)(NavigationBar));

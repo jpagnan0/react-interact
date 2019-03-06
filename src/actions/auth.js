@@ -36,6 +36,8 @@ export function login({username, password}) {
 
       // if(jwt === localStorage.token)
         dispatch({type: LOGIN, payload: user, token: jwt})
+        localStorage.setItem('token', jwt)
+
         dispatch(push('/'))
 
     }).catch((err) => { alert(err)})

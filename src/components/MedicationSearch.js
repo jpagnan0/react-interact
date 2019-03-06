@@ -20,7 +20,7 @@ class MedicationSearch extends Component {
           <Input
             onChange={e => {
               const input = e.target.value
-              _.throttle(() => onChange(input), 2000)(input)
+              _.throttle(() => onChange(input), 1000)(input)
             }}
             value={medicationTerm} key={medicationTerm}
           />
