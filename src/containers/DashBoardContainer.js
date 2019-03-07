@@ -43,6 +43,7 @@ class DashBoardContainer extends Component {
       dispatch(medicationTerm(medicationTerm));
       dispatch(doFetchMedications(medicationTerm));
     }
+
   }
 
   handleChange(nextMedication) {
@@ -90,7 +91,7 @@ class DashBoardContainer extends Component {
           align="center"
         >
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Typography variant="h5" color="inherit" align="center">
+            <Typography variant="h5" color="secondary" align="center">
               Search Results
             </Typography>
             <Grid item align="center">
@@ -100,16 +101,16 @@ class DashBoardContainer extends Component {
               />
             </Grid>
           </Grid>
-
+          
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Typography variant="h5" color="inherit" align="center">
+            <Typography variant="h5" color="secondary" align="center">
               Interactions
             </Typography>
-            <InteractionList currentInteractions={interactions} />
+            <InteractionList interactions={interactions} />
           </Grid>
 
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Typography variant="h5" color="inherit" align="center">
+            <Typography variant="h5" color="secondary" align="center">
               Current Medications
             </Typography>
             <UserMedicationList

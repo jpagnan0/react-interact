@@ -13,11 +13,10 @@ class InteractionList extends Component {
     console.log(med)
   }
   render() {
-    const { classes, currentInteractions } = this.props;
-
+    const { classes, interactions } = this.props;
     return (
       <div>
-        {currentInteractions && currentInteractions.map((interaction, i) => (
+        {interactions && interactions.map((interaction, i) => (
           <Interaction interaction={interaction} key={i} />
         ))}
 

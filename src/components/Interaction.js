@@ -25,11 +25,11 @@ const styles = theme => ({
 
 const Interaction = props => {
   const { classes, theme, interaction} = props;
-  const {name_one, name_two, medication_one_id, medication_two_id} = interaction;
+  const {name_one, name_two, medication_one_id, medication_two_id, description} = interaction;
   console.log("theme:", theme);
   const notNull = () => (!name_one && !name_two)
   return (
-  notNull() || <div className={classes.cardSpacer}>
+  <div className={classes.cardSpacer}>
     <Card className={classes.card} square={true} align="center">
       <CardContent>
         <Typography

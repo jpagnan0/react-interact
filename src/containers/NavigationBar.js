@@ -51,11 +51,11 @@ class NavigationBar extends Component {
               <Typography variant="h6" color="inherit" className={classes.grow}>
                 {loggedInUser.token === localStorage.getItem('token') ?  `Welcome ${loggedInUser.name}` : 'HELLO'}
               </Typography>
-              <Button href="/signup" color="secondary">
+              <Button href="/signup" color="secondary" size="large" outlined flatSecondary>
                 {/* <Link to="/signup" /> */}
                 Sign Up
               </Button>
-              <Button href="/login" color="secondary">
+              <Button href="/login" color="secondary" size="large" outlined flatSecondary>
                 {/* <Link to="/login"> Log In </Link> */}
                 {loggedInUser.token === localStorage.getItem('token') ? "Log Out" : "Login" }
               </Button>

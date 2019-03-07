@@ -49,7 +49,7 @@ const Medication = props => {
             onClick={e => {
               name === "user-med-list" ? removeUserMedication(e,med) : handleClick(e,med)
             }}
-          >
+          fullWidth>
             {name === "user-med-list"
               ? "Remove current meds"
               : "Add to current med"}
