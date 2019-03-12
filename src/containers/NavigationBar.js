@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -24,15 +22,8 @@ const styles = {
 };
 
 class NavigationBar extends Component {
-  componentDidMount() {
-    console.log(this.props.loggedInUser)
-  }
-  componentDidUpdate() {
-    console.log(this.props.loggedInUser)
-  }
   render() {
     const { classes, loggedInUser } = this.props;
-    // const { theme } = this.props;
     return (
       <CssBaseline>
         <div className={classes.root}>
@@ -51,12 +42,10 @@ class NavigationBar extends Component {
               <Typography variant="h6" color="inherit" className={classes.grow}>
                 {loggedInUser.token === localStorage.getItem('token') ?  `Welcome ${loggedInUser.name}` : 'HELLO'}
               </Typography>
-              <Button href="/signup" color="secondary" size="large" outlined="true" flatSecondary={classes.flatSecondary}>
-                {/* <Link to="/signup" /> */}
+              <Button href="/signup" color="secondary" size="large" outlined="true" >
                 Sign Up
               </Button>
-              <Button href="/login" color="secondary" size="large" outlined="true" flatSecondary={classes.flatSecondary}>
-                {/* <Link to="/login"> Log In </Link> */}
+              <Button href="/login" color="secondary" size="large" outlined="true" >
                 {loggedInUser.token === localStorage.getItem('token') ? "Log Out" : "Login" }
               </Button>
             </Toolbar>

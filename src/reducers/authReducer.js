@@ -3,7 +3,6 @@ import {
   UNAUTHENTICATED,
   AUTH_ERROR,
   LOGIN,
-  LOGOUT
 } from "../constants/actionTypes";
 
 export function authReducer(
@@ -30,8 +29,9 @@ export function authReducer(
       return { ...state, authenticated: false };
     case AUTH_ERROR:
       return { ...state, error: action.payload };
+    default:
+      return state;
   }
-  return state;
 }
 
 export function currentUser(state = {}, action) {

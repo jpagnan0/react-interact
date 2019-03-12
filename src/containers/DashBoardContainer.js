@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { Switch, Route } from 'react-router'
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Button from "@material-ui/core/Button";
 import { medicationTerm, doFetchMedications } from "../actions/medication";
 import { postUserMedication, updateUserMedications } from "../actions/userMedications";
 import { userInteractions } from '../actions/userInteractions';
@@ -23,13 +20,7 @@ class DashBoardContainer extends Component {
 
   componentDidMount() {
     const {
-      doFetchMedications,
-      medicationTerm,
-      medications,
       loggedInUser,
-      currentMedications,
-      currentInteractions,
-      // userInteractions,
       updateUserMedications,
     } = this.props;
 
@@ -37,9 +28,6 @@ class DashBoardContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // console.log("componentDidUpdate @prevProps:", prevProps);
-    // console.log("componentDidUpdate @this.props:", this.props);
-
     if (this.props.medicationTerm.search !== prevProps.medicationTerm.search) {
       let { dispatch, medicationTerm } = this.props;
       dispatch(medicationTerm(medicationTerm));
@@ -48,14 +36,11 @@ class DashBoardContainer extends Component {
   }
 
   handleChange(nextMedication) {
-    console.log("handleChange @nextMedication:", nextMedication);
     this.props.medicationTerm(nextMedication);
     this.props.doFetchMedications(nextMedication);
   }
 
   handleClick(e, med) {
-    console.log(e.target)
-    const {medications} = this.props;
     const {id} = this.props.loggedInUser;
 
     this.props.postUserMedication(med, id)
@@ -63,17 +48,10 @@ class DashBoardContainer extends Component {
       this.props.userInteractions(this.props.loggedInUser.id)
     })
     this.props.updateUserMedications(id)
-    // this.props.userInteractions(id)
   }
 
   render() {
-    const { medicationTerm, medications, loggedInUser, getCurrentUser, updateUserMedications, currentMedications, currentInteractions} = this.props;
-    console.log("current interactions", this.props);
-    // const { medications, interactions } = loggedInUser;
-    // const { interactions } = loggedInUser;
-
-    // const { currentMedications } = this.state;
-    // const userMeds = loggedInUser.medications;
+    const { medications, loggedInUser, currentMedications, currentInteractions} = this.props;
 
     return (
       <div>
@@ -98,7 +76,7 @@ class DashBoardContainer extends Component {
             <Grid item align="center">
               <MedicationList
                 handleClick={this.handleClick}
-                medications={this.props.medications}
+                medications={medications}
               />
             </Grid>
           </Grid>
@@ -117,8 +95,7 @@ class DashBoardContainer extends Component {
             <UserMedicationList
               currentMedications={currentMedications}
             />
-            {/* send the request to rails /user_interactions/:id => loggedInUser.id  @return  */}
-            {/* {(loggedInUser === {} || currentMedications === []) ? <Button onClick={()=> {this.getUserInteractions(loggedInUser.id)}}>Check Interactions</Button> : ''} */}
+
           </Grid>
 
         </Grid>
@@ -127,7 +104,6 @@ class DashBoardContainer extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log("state in <DashBoardContainer /> @fn mapStateToProps():", state);
   return {
     loggedInUser: state.loggedInUser,
     currentMedications: state.currentUserMedications.userMedications,

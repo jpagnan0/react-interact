@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import PropTypes from "prop-types";
-import Grid from '@material-ui/core/Grid';
 import Medication from '../components/Medication';
 import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-
 })
 class MedicationList extends Component {
 

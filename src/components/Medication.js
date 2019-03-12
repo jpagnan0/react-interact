@@ -1,12 +1,12 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
+
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+
 const styles = theme => ({
   card: {
     maxWidth: 500,
@@ -24,8 +24,7 @@ const styles = theme => ({
 });
 
 const Medication = props => {
-  const { classes, theme, name, med, handleClick, removeUserMedication } = props;
-  console.log("theme:", theme);
+  const { classes, name, med, handleClick, removeUserMedication } = props;
   return (
     <div className={classes.cardSpacer}>
       <Card className={classes.card} square={true} align="center">

@@ -1,5 +1,4 @@
 import { POST_USER_MEDICATIONS, GET_USER_MEDICATIONS } from "../constants/actionTypes";
-import { push } from "connected-react-router";
 const API = `http://localhost:3000/api/v1`;
 export function getUserMeds() {
   return  { type: GET_USER_MEDICATIONS }

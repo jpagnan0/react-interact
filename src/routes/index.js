@@ -9,7 +9,7 @@ const routes = (
     <NavigationBar />
     <Switch>
       
-      <Route exact path="/" component={DashBoardContainer} />
+      <Route exact path="/dashboard" component={DashBoardContainer} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/login" component={Login} />
 

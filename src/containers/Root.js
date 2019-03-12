@@ -6,7 +6,6 @@ import App from './App';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
-console.log(colors)
 const store = configureStore()
 const theme = createMuiTheme({
   palette: {
@@ -15,7 +14,7 @@ const theme = createMuiTheme({
     secondary: colors.indigo,
   }
 })
-
+console.log("STORE", store.liftedStore.getState())
 class Root extends Component {
   render() {
     return (

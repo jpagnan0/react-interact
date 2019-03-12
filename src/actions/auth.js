@@ -1,4 +1,4 @@
-import {AUTHENTICATED, UNAUTHENTICATED, AUTH_ERROR, LOGIN} from "../constants/actionTypes";
+import {AUTHENTICATED, LOGIN} from "../constants/actionTypes";
 import { push } from 'connected-react-router'
 
 const API = `http://localhost:3000/api/v1`;
@@ -38,7 +38,7 @@ export function login({username, password}) {
         dispatch({type: LOGIN, payload: user, token: jwt})
         localStorage.setItem('token', jwt)
 
-        dispatch(push('/'))
+        dispatch(push('/dashboard'))
 
     }).catch((err) => { alert(err)})
   }
@@ -72,7 +72,7 @@ export function signup(user, dispatch) {
         token: jwt
       })
       localStorage.setItem('token', jwt)
-      dispatch(push('/'))
+      dispatch(push('/dashboard'))
     })
 
   }

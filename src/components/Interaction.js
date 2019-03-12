@@ -1,12 +1,10 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+
 const styles = theme => ({
   card: {
     maxWidth: 500,
@@ -24,10 +22,10 @@ const styles = theme => ({
 });
 
 const Interaction = props => {
-  const { classes, theme, interaction} = props;
-  const {name_one, name_two, medication_one_id, medication_two_id, description} = interaction;
-  console.log("theme:", theme);
-  const notNull = () => (!name_one && !name_two)
+  const { classes, interaction} = props;
+  const {name_one, name_two, description} = interaction;
+
+
   return (
   <div className={classes.cardSpacer}>
     <Card className={classes.card} square={true} align="center">
@@ -41,7 +39,7 @@ const Interaction = props => {
         </Typography>
         <Typography component="h3">{`${name_one} & ${name_two}`}</Typography>
         <Typography className={classes.pos} color="textSecondary">
-          {interaction.description}
+          {description}
         </Typography>
       </CardContent>
 

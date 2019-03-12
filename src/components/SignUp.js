@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {setCurrentUser, signup} from "../actions/auth";
-// import { withAuth } from "react-authmanager";
-import PropTypes from "prop-types";
+import { signup } from "../actions/auth";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -79,12 +74,7 @@ export class SignUp extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // const {name, username, password} = this.state;
-    this.props.dispatch(signup(this.state.user))
-    // console.log("setCurrentUser:", signin(this.state.user))
-
-    console.log("user:" , this.state.user)
-    // console.log("dispatch:" , dispatch)
+    this.props.dispatch(signup(this.state.user));
   }
 
   render() {
@@ -152,25 +142,13 @@ export class SignUp extends Component {
     );
   }
 }
-// Authmanager.config.getToken = async credentials => {
-//   ... // login user with an ajax call to the server and get a token back
-//   return token;
-// }
-//
-// // how to get the current logged user informations from the server
-// Authmanager.config.getUser = async () => {
-//   ... // get current logged user informations from the server with an ajax call
-//   return user;
-// }
-// export default withStyles(styles)(SignUp);
+
 function mapStateToProps(state) {
   const { user } = state.auth;
-  const { router } = state;
-    return {
-      user,
-      router
-    };
+  return {
+    user,
+  };
 }
 //
 //
-export default connect(mapStateToProps)(withStyles(styles)(SignUp))
+export default connect(mapStateToProps)(withStyles(styles)(SignUp));

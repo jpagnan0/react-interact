@@ -14,7 +14,6 @@ export function currentUserMedications(state={
         userMedications: action.payload
       }
     case GET_USER_INTERACTIONS:
-      console.log("inside get user interactions action", action.payload);
       return {
         ...state,
         interactions: action.payload
