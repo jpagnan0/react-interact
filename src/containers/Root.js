@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import configureStore, { history } from '../configureStore'
 import App from './App';
-
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 const store = configureStore()
@@ -14,7 +13,6 @@ const theme = createMuiTheme({
     secondary: colors.indigo,
   }
 })
-console.log("STORE", store.liftedStore.getState())
 class Root extends Component {
   render() {
     return (

@@ -38,11 +38,12 @@ export function currentUser(state = {}, action) {
   switch (action.type) {
     case LOGIN:
       const { token } = action;
-      const { id, name, username, medications, interactions } = action.payload;
+      const { id, name, username, medications  } = action.payload;
       return {
         ...state,
-        ...{ id, name, username, medications, interactions, token }
+        ...{ id, name, username, medications, token }
       };
+    
     default:
       return state;
   }
