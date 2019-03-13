@@ -2,10 +2,7 @@ import { AUTHENTICATED, LOGIN } from "../constants/actionTypes";
 import { push } from "connected-react-router";
 
 const API = `http://localhost:3000/api/v1`;
-export function getToken(jwt)
-{
-  return {currentToken: jwt}
-}
+
 export function setCurrentUser(currentUser) {
   const { name, username, password } = currentUser;
   return {
@@ -35,7 +32,7 @@ export function loggedIn () {
         Authorization: `Bearer ${localStorage.token}`
       }
     }).then(res => res.json())
-    .then(res => dispatch({type: LOGIN, payload: res}))
+    .then(res => dispatch(setCurrentUser(res.user)))
   }
 }
 
@@ -58,8 +55,9 @@ export function login({ username, password }) {
         // if(jwt === localStorage.token)
         dispatch({ type: LOGIN, payload: user, token: jwt });
         localStorage.setItem("token", jwt);
-
-        dispatch(push("/dashboard"));
+        if (loggedIn()) {
+          dispatch(push("/dashboard"));
+        }
       })
       .catch(err => {
         alert(err);
@@ -93,7 +91,6 @@ export function signup(user, dispatch) {
           payload: user,
           token: jwt
         });
-        getToken(jwt)
         localStorage.setItem("token", jwt);
         dispatch(push("/dashboard"));
       });

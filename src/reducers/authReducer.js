@@ -7,13 +7,10 @@ import {
 
 export function authReducer(
   state = {
-    user: {
       name: "",
       username: "",
       password: "",
-      confirmPassword: ""
-    },
-    submitted: false
+      confirmPassword: "",
   },
   action
 ) {
@@ -22,8 +19,7 @@ export function authReducer(
       return {
         ...state,
         token: action.payload.jwt,
-        user: action.payload.user,
-        submitted: true
+        user: action.payload,
       };
     case UNAUTHENTICATED:
       return { ...state, authenticated: false };
@@ -38,12 +34,12 @@ export function currentUser(state = {}, action) {
   switch (action.type) {
     case LOGIN:
       const { token } = action;
-      const { id, name, username, medications  } = action.payload;
+      const { id, name, username, medications, interactions  } = action.payload;
       return {
         ...state,
-        ...{ id, name, username, medications, token }
+        ...{ id, name, username, medications, interactions, token }
       };
-    
+
     default:
       return state;
   }

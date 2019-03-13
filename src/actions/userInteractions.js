@@ -4,7 +4,14 @@ const API = `http://localhost:3000/api/v1`;
 
 export function userInteractions(id, dispatch) {
   return dispatch => {
-    return fetch(`${API}/user_interactions/${id}`)
+    return fetch(`${API}/current_interactions`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`
+        }
+      }
+    )
       .then(r => r.json())
       .then((res => dispatch({ type: GET_USER_INTERACTIONS, payload: res})))
   };
