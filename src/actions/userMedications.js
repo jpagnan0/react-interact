@@ -6,38 +6,35 @@ const headers = {
       Authorization: `Bearer ${localStorage.token}`
     }
 }
-export function getUserMeds() {
-  return  { type: GET_USER_MEDICATIONS }
-}
-export function postUserMedication({ rxcui, name, name_alt},id, dispatch) {
+
+export function postUserMedication({ rxcui, name, name_alt}, id) {
   return dispatch => {
-    dispatch(updateUserMedications(id))
     return fetch(`${API}/user_medications`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         headers: {
-          Authorization: `Bearer ${localStorage.token}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       },
       body: JSON.stringify({
+        id,
         rxcui,
         name,
-        name_alt,
+        name_alt
       })
     })
       .then(r => r.json())
-      .then(res => dispatch({ type: POST_USER_MEDICATIONS, payload: res}))
-      .then(() =>  dispatch(updateUserMedications()));
+      .then(res => dispatch({ type: GET_USER_MEDICATIONS, payload: res}))
   };
 }
 
-export function getUserMedications (dispatch) {
+export function getUserMedications () {
   return dispatch => {
     return fetch(`${API}/current_medications`, headers)
     .then(r => r.json())
-    .then(res => dispatch({ type: GET_USER_MEDICATIONS, payload: res.medications}))
+    .then(res => dispatch({ type: GET_USER_MEDICATIONS, payload: res}))
   }
 };
 export function updateUserMedications() {

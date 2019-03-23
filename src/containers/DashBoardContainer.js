@@ -42,12 +42,11 @@ class DashBoardContainer extends Component {
 
   handleClick(e, med) {
     const {id} = this.props.loggedInUser;
-
     this.props.postUserMedication(med, id)
     .then(() => {
-      this.props.userInteractions(this.props.loggedInUser.id)
+      this.props.userInteractions(id)
+      this.props.updateUserMedications()
     })
-    this.props.updateUserMedications(id)
   }
 
   render() {
@@ -106,8 +105,8 @@ class DashBoardContainer extends Component {
 function mapStateToProps(state) {
   return {
     loggedInUser: state.loggedInUser,
-    currentMedications: state.currentUserMedications.userMedications,
-    currentInteractions: state.currentUserMedications.interactions,
+    currentMedications: state.currentUserMedications.medications,
+    currentInteractions: state.currentUserInteractions.interactions,
     medicationTerm: state.medicationTerm,
     medications: [...state.medicationsReducer.medications]
   };
