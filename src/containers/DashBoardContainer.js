@@ -22,9 +22,11 @@ class DashBoardContainer extends Component {
     const {
       loggedInUser,
       updateUserMedications,
+      userInteractions
     } = this.props;
 
     updateUserMedications(loggedInUser.id)
+    userInteractions(loggedInUser.id)
   }
 
   componentDidUpdate(prevProps) {

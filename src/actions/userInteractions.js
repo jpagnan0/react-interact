@@ -2,9 +2,9 @@ import {GET_USER_INTERACTIONS } from "../constants/actionTypes";
 // import { push } from "connected-react-router";
 const API = `http://localhost:3000/api/v1`;
 
-export function userInteractions() {
+export function userInteractions(id) {
   return dispatch => {
-    return fetch(`${API}/current_interactions`,
+    return fetch(`${API}/user_interactions/${id}`,
       {
         method: "GET",
         headers: {

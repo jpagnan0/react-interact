@@ -1,4 +1,4 @@
-import { POST_USER_MEDICATIONS, GET_USER_MEDICATIONS } from "../constants/actionTypes";
+import { POST_USER_MEDICATIONS, GET_USER_MEDICATIONS,GET_USER_INTERACTIONS } from "../constants/actionTypes";
 const API = `http://localhost:3000/api/v1`;
 const headers = {
     method: 'GET',
@@ -27,6 +27,7 @@ export function postUserMedication({ rxcui, name, name_alt}, id) {
     })
       .then(r => r.json())
       .then(res => dispatch({ type: GET_USER_MEDICATIONS, payload: res}))
+      .then(() => dispatch({type: GET_USER_INTERACTIONS }))
   };
 }
 
@@ -34,7 +35,10 @@ export function getUserMedications () {
   return dispatch => {
     return fetch(`${API}/current_medications`, headers)
     .then(r => r.json())
-    .then(res => dispatch({ type: GET_USER_MEDICATIONS, payload: res}))
+    .then(res => {
+      // debugger
+      dispatch({ type: GET_USER_MEDICATIONS, payload: res})
+    })
   }
 };
 export function updateUserMedications() {
