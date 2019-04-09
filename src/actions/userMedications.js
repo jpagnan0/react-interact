@@ -27,7 +27,7 @@ export function postUserMedication({ rxcui, name, name_alt}, id) {
     })
       .then(r => r.json())
       .then(res => dispatch({ type: GET_USER_MEDICATIONS, payload: res}))
-      .then(() => dispatch({type: GET_USER_INTERACTIONS }))
+    //  .then(() => dispatch({type: GET_USER_INTERACTIONS, pay }))
   };
 }
 

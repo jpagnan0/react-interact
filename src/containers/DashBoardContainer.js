@@ -46,7 +46,7 @@ class DashBoardContainer extends Component {
     const {id} = this.props.loggedInUser;
     this.props.postUserMedication(med, id)
     .then(() => {
-      this.props.userInteractions(id)
+      this.props.userInteractions()
       this.props.updateUserMedications()
     })
   }
