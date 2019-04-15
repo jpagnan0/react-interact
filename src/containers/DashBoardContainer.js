@@ -71,7 +71,7 @@ class DashBoardContainer extends Component {
           align="center"
         >
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Typography variant="h5" color="secondary" align="center">
+            <Typography variant="h4" color="secondary" align="center">
               Search Results
             </Typography>
             <Grid item align="center">
@@ -83,14 +83,14 @@ class DashBoardContainer extends Component {
           </Grid>
 
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Typography variant="h5" color="secondary" align="center">
+            <Typography variant="h4" color="secondary" align="center">
               Interactions
             </Typography>
             <InteractionList loggedInUser={loggedInUser} interactions={currentInteractions}/>
           </Grid>
 
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Typography variant="h5" color="secondary" align="center">
+            <Typography variant="h4" color="secondary" align="center">
               Current Medications
             </Typography>
             <UserMedicationList
