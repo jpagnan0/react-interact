@@ -17,7 +17,8 @@ const styles = theme => ({
     marginBottom: 6
   },
   cardSpacer: {
-    marginBottom: 3
+    marginBottom: 3,
+    marginRight: 3
   }
 });
 
@@ -31,15 +32,16 @@ const Interaction = props => {
     <Card className={classes.card} square={true} align="center">
       <CardContent>
         <Typography
-          className={classes.title}
-          color="textSecondary"
+          // className={classes.title}
+          variant="h5"
+          color="error"
           gutterBottom
         >
-          interaction
+          {`${name_one} & ${name_two}`}
         </Typography>
-        <Typography component="h3">{`${name_one} & ${name_two}`}</Typography>
+        <Typography variant="h6">{description}</Typography>
         <Typography className={classes.pos} color="textSecondary">
-          {description}
+
         </Typography>
       </CardContent>
 

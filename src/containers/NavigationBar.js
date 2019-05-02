@@ -8,9 +8,9 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-const styles = {
+const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   grow: {
     flexGrow: 1
@@ -19,7 +19,7 @@ const styles = {
     marginLeft: -12,
     marginRight: 20
   }
-};
+});
 
 class NavigationBar extends Component {
   render() {
@@ -36,15 +36,16 @@ class NavigationBar extends Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography variant="h6" color="inherit" className={classes.grow}>
+              <Typography variant="h4" color="inherit" className={classes.grow}>
                 Interact
               </Typography>
-              <Typography variant="h6" color="inherit" className={classes.grow}>
+              <Typography variant="h4" color="inherit" className={classes.grow}>
                 {loggedInUser.token === localStorage.getItem('token') ?  `Welcome ${loggedInUser.name}` : 'HELLO'}
               </Typography>
-              <Button href="/signup" color="secondary" size="large" outlined="true" >
-                Sign Up
-              </Button>
+              {!loggedInUser.token &&
+                <Button href="/signup" color="secondary" size="large" outlined="true" >
+                  Sign Up
+                </Button>}
               <Button href="/login" color="secondary" size="large" outlined="true" >
                 {loggedInUser.token === localStorage.getItem('token') ? "Log Out" : "Login" }
               </Button>

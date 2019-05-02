@@ -65,7 +65,7 @@ export function login({ username, password }) {
   };
 }
 
-export function signup(user, dispatch) {
+export function signup(user) {
   // console.log("user in auth action: ", user)
   return dispatch => {
     return fetch(`${API}/users`, {
@@ -86,11 +86,11 @@ export function signup(user, dispatch) {
             user
           }
         });
-        dispatch({
-          type: LOGIN,
-          payload: user,
-          token: jwt
-        });
+        // dispatch({
+        //   type: LOGIN,
+        //   payload: user,
+        //   token: jwt
+        // });
         localStorage.setItem("token", jwt);
         dispatch(push("/dashboard"));
       });
