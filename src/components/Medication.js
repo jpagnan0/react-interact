@@ -29,17 +29,16 @@ const Medication = props => {
     <div className={classes.cardSpacer}>
       <Card className={classes.card} square={true} align="center">
         <CardContent>
-          <Typography variant="h5">{med.name_alt}</Typography>
           <Typography
-            // className={classes.title}
-            variant="title"
+            className={classes.title}
             color="textSecondary"
             gutterBottom
           >
             {med.rxcui}
           </Typography>
-          <Typography variant="body1" className={classes.pos} color="textSecondary">
-            {med.name}
+          <Typography variant="h6">{med.name}</Typography>
+          <Typography className={classes.pos} color="textSecondary">
+            {med.name_alt}
           </Typography>
         </CardContent>
 
