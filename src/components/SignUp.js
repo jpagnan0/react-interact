@@ -144,7 +144,7 @@ export class SignUp extends Component {
 }
 
 function mapStateToProps(state) {
-  const { user } = state;
+  const { user } = state.auth;
   return {
     user,
   };

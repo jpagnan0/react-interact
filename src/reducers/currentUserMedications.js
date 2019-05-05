@@ -1,7 +1,7 @@
 import { POST_USER_MEDICATIONS, GET_USER_MEDICATIONS, GET_USER_INTERACTIONS} from '../constants/actionTypes';
 
 export function currentUserMedications(state={
-  medications: []
+  interactions: []
 }, action) {
   switch (action.type) {
     case POST_USER_MEDICATIONS:
@@ -11,7 +11,12 @@ export function currentUserMedications(state={
     case GET_USER_MEDICATIONS:
       return {
         ...state,
-        medications: action.payload
+        userMedications: action.payload
+      }
+    case GET_USER_INTERACTIONS:
+      return {
+        ...state,
+        interactions: action.payload
       }
     default:
       return state

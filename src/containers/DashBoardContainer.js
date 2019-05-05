@@ -22,11 +22,9 @@ class DashBoardContainer extends Component {
     const {
       loggedInUser,
       updateUserMedications,
-      userInteractions
     } = this.props;
 
     updateUserMedications(loggedInUser.id)
-    userInteractions(loggedInUser.id)
   }
 
   componentDidUpdate(prevProps) {
@@ -44,11 +42,12 @@ class DashBoardContainer extends Component {
 
   handleClick(e, med) {
     const {id} = this.props.loggedInUser;
+
     this.props.postUserMedication(med, id)
     .then(() => {
-      this.props.userInteractions()
-      this.props.updateUserMedications()
+      this.props.userInteractions(this.props.loggedInUser.id)
     })
+    this.props.updateUserMedications(id)
   }
 
   render() {
@@ -71,7 +70,7 @@ class DashBoardContainer extends Component {
           align="center"
         >
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Typography variant="h4" color="secondary" align="center">
+            <Typography variant="h5" color="secondary" align="center">
               Search Results
             </Typography>
             <Grid item align="center">
@@ -83,14 +82,14 @@ class DashBoardContainer extends Component {
           </Grid>
 
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Typography variant="h4" color="secondary" align="center">
+            <Typography variant="h5" color="secondary" align="center">
               Interactions
             </Typography>
             <InteractionList loggedInUser={loggedInUser} interactions={currentInteractions}/>
           </Grid>
 
           <Grid item lg={4} md={4} sm={4} xs={12}>
-            <Typography variant="h4" color="secondary" align="center">
+            <Typography variant="h5" color="secondary" align="center">
               Current Medications
             </Typography>
             <UserMedicationList
@@ -107,8 +106,8 @@ class DashBoardContainer extends Component {
 function mapStateToProps(state) {
   return {
     loggedInUser: state.loggedInUser,
-    currentMedications: state.currentUserMedications.medications,
-    currentInteractions: state.currentUserInteractions.interactions,
+    currentMedications: state.currentUserMedications.userMedications,
+    currentInteractions: state.currentUserMedications.interactions,
     medicationTerm: state.medicationTerm,
     medications: [...state.medicationsReducer.medications]
   };
