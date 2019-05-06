@@ -9,7 +9,7 @@ const headers = {
 
 export function postUserMedication({ rxcui, name, name_alt}, id) {
   return dispatch => {
-    return fetch(`${API}/user_medications`, {
+    return fetch(`${API}/medications`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

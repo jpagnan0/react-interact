@@ -92,7 +92,7 @@ export function signup(user) {
         //   token: jwt
         // });
         localStorage.setItem("token", jwt);
-        dispatch(push("/dashboard"));
+        dispatch(push("/login"));
       });
   };
 }
