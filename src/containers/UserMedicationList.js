@@ -13,9 +13,9 @@ class UserMedicationList extends Component {
 
     return (
       <div>
-        {currentMedications && currentMedications.map((med, i) => (
+        {currentMedications.length > 0 ? currentMedications.map((med, i) => (
           <Medication name="user-med-list" removeUserMedication={this.removeUserMedication} med={med} key={i} />
-        ))}
+        )):''}
 
       </div>
     );

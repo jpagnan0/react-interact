@@ -12,9 +12,6 @@ const styles = theme => ({
     maxWidth: 500,
     height: 250
   },
-  title: {
-    fontSize: 14
-  },
   pos: {
     marginBottom: 6
   },
@@ -31,8 +28,8 @@ const Medication = props => {
         <CardContent>
           <Typography variant="h5">{med.name_alt}</Typography>
           <Typography
-            // className={classes.title}
-            variant="title"
+
+            variant="h6"
             color="textSecondary"
             gutterBottom
           >
