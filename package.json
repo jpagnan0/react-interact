@@ -1,6 +1,7 @@
 {
   "name": "react-interact",
   "version": "0.1.0",
+  "homepage": "https://interact-io.netlify.com/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.2",
