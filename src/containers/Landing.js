@@ -29,7 +29,7 @@ class Landing extends Component {
           <Grid container spacing={0} align="center">
             <Grid item="item" xs={4}></Grid>
             <Grid item="item" xs={2}>
-              <Button variant="raised" color="primary" style={{
+              <Button href="/login" size="medium" variant="raised" color="primary" style={{
                 backgroundColor: "#2196F3"
               }}>
                 Login
@@ -37,10 +37,10 @@ class Landing extends Component {
             </Grid>
 
             <Grid item="item" xs={2}>
-              <Button variant="contained" color="primary" style={{
+              <Button href="/signup" size="medium" variant="contained" color="primary" style={{
                 backgroundColor: "#2196F3"
               }}>
-                Signup
+                Sign Up
               </Button>
             </Grid>
             <Grid item="item" xs={4}></Grid>

@@ -1,4 +1,4 @@
-import { POST_USER_MEDICATIONS, GET_USER_MEDICATIONS, GET_USER_INTERACTIONS} from '../constants/actionTypes';
+import { POST_USER_MEDICATIONS, GET_USER_MEDICATIONS/*, GET_USER_INTERACTIONS*/} from '../constants/actionTypes';
 
 export function currentUserMedications(state={
   medications: []

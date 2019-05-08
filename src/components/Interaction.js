@@ -4,7 +4,6 @@ import CardContent from "@material-ui/core/CardContent";
 
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-import red from '@material-ui/core/colors/red';
 
 const styles = theme => ({
   card: {

@@ -8,9 +8,10 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
+// import Avatar from '@material-ui/core/Avatar';
+// import Grid from '@material-ui/core/Grid';
 import { loggedIn } from '../actions/auth';
+// import {AUTHENTICATED} from '../constants/actionTypes'
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -30,6 +31,10 @@ const styles = theme => ({
 });
 
 class NavigationBar extends Component {
+componentDidMount() {
+  loggedIn()
+}
+
   render() {
     const { classes, loggedInUser } = this.props;
     console.log(loggedIn())
