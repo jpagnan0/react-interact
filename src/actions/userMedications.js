@@ -1,5 +1,5 @@
 import { GET_USER_MEDICATIONS /*,POST_USER_MEDICATIONS, , GET_USER_INTERACTIONS*/ } from "../constants/actionTypes";
-const API = `http://localhost:3000/api/v1`;
+const API = `https://interact-io-api.herokuapp.com/api/v1/api/v1`;
 const headers = {
     method: 'GET',
     headers: {
