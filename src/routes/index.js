@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Landing from "../containers/Landing";
 import NavigationBar from "../containers/NavigationBar";
 import DashBoardContainer from "../containers/DashBoardContainer"
