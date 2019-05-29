@@ -7,6 +7,11 @@ export function currentUserInteractions(state={
     case GET_USER_INTERACTIONS:
       return {
         ...state,
+        interactions: action.payload.status===500 ? [] : action.payload
+      }
+    case "NO_INTERACTIONS":
+      return {
+        ...state,
         interactions: action.payload
       }
     default:
