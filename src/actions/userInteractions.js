@@ -14,5 +14,6 @@ export function userInteractions() {
     )
       .then(r => r.json())
       .then(res => dispatch({ type: GET_USER_INTERACTIONS, payload: res}))
+      .catch(err => err)
   };
 }
