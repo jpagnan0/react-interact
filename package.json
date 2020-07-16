@@ -10,7 +10,7 @@
     "connected-react-router": "^6.3.1",
     "cross-fetch": "^3.0.1",
     "history": "^4.7.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "react": "^16.8.3",
     "react-authmanager": "^1.4.4",
     "react-dom": "^16.8.3",
